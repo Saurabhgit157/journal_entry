@@ -21,10 +21,24 @@ class _JournalEntryHomeScreenState extends State<JournalEntryHomeScreen> {
       ),
       body: ListView.builder(
         itemCount: 6,
-        itemBuilder: (context , index)  
-        {
+        itemBuilder: (context, index) {
           return JournalEntryCard();
-        }   
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) {
+              return Container(
+                
+                height: 800, 
+                color: Colors.white);
+            },
+          );
+        },
+        backgroundColor: Colors.amber,
+        child: Icon(Icons.add, color: Colors.black),
       ),
     );
   }
