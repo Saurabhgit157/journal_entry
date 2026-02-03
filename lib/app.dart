@@ -8,6 +8,7 @@ class JournalEntryApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'My Journal APP',
+      debugShowCheckedModeBanner: false,
       home: const JournalEntryHomeScreen(),
     );
   }
