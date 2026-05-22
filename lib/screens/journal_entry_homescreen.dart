@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:journal_entry/models/journal_entry.dart';
+import 'package:journal_entry/widgets/add_entry_form.dart';
 import 'package:journal_entry/widgets/journal_entry_card.dart';
 
 class JournalEntryHomeScreen extends StatefulWidget {
@@ -9,6 +11,19 @@ class JournalEntryHomeScreen extends StatefulWidget {
 }
 
 class _JournalEntryHomeScreenState extends State<JournalEntryHomeScreen> {
+  final List<JournalEntry> _entries = [];
+  void _addNewEntry(String title, String content){
+    setState(() {
+      _entries.add(JournalEntry(
+        id: DateTime.now().toString(),
+        title: title,
+        content: content,
+        date: DateTime.now(),
+
+        ),
+      );
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +35,7 @@ class _JournalEntryHomeScreenState extends State<JournalEntryHomeScreen> {
         ),
       ),
       body: ListView.builder(
-        itemCount: 6,
+        itemCount: _entries.length,
         itemBuilder: (context, index) {
           return JournalEntryCard();
         },
@@ -29,12 +44,15 @@ class _JournalEntryHomeScreenState extends State<JournalEntryHomeScreen> {
         onPressed: () {
           showModalBottomSheet(
             context: context,
-            builder: (context) {
-              return Container(
+            //builder is a parameter that expects a function.
+            //AddEntryForm()Creates widget object.
+            builder:
+            (context) => AddEntryForm(
+              onAdd: _addNewEntry,
+            ),
                 
-                height: 800, 
-                color: Colors.white);
-            },
+
+
           );
         },
         backgroundColor: Colors.amber,
