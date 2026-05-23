@@ -37,7 +37,9 @@ class _JournalEntryHomeScreenState extends State<JournalEntryHomeScreen> {
       body: ListView.builder(
         itemCount: _entries.length,
         itemBuilder: (context, index) {
-          return JournalEntryCard();
+          final entry = _entries[index];
+          // “Pass variable entry into constructor parameter named entry.”
+          return JournalEntryCard(entry: entry);
         },
       ),
       floatingActionButton: FloatingActionButton(
